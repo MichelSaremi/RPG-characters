@@ -1,0 +1,11 @@
+
+public class Character {
+	private String name;
+	private int level;
+	private int base_Strength;
+	private int base_Dexterity;
+	private int base_Inteligence;
+	private int total_Strength;
+	private int total_Dexterity;
+	private int total_Inteligence;
+}

@@ -1,0 +1,7 @@
+
+public abstract class Item {
+	
+	private String name;
+	private int required_level;
+	private String[] Slot;
+}

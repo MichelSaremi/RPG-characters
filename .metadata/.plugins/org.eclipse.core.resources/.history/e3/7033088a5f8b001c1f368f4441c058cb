@@ -1,0 +1,26 @@
+
+public class Hero {
+	
+	//---char
+	private String name;
+	private String character;
+	private int level = 1;
+	
+	//---attributes
+	private int base_Strength;
+	private int base_Dexterity;
+	private int base_Inteligence;
+	private int total_Strength;
+	private int total_Dexterity;
+	private int total_Inteligence;
+	
+	public Hero(String name, String character, int base_Strength, int base_Dexterity, int base_Intelligence) {
+		this.name = name;
+		this.character = character;
+		this.base_Strength = base_Strength;
+		this.base_Dexterity = base_Dexterity;
+		this.base_Inteligence = base_Intelligence;
+		
+	}
+	
+}

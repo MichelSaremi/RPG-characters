@@ -1,0 +1,31 @@
+
+public class Weapon extends Item {
+	
+	//---properties
+	private String weapontype;
+	private int damage;
+	private int attacks_per_second;
+	
+	
+	//---constructors
+	public Weapon() {}
+	
+	public Weapon(String name, int req_lvl, String[] slot, String type, int damage, int a_p_s, String character) {
+		super(name, req_lvl, slot, character);
+		this.weapontype = type;
+		this.damage = damage;
+		this.attacks_per_second = a_p_s;
+
+	}
+	//---getters
+	public String getWeaponType() {
+		return weapontype;
+	}
+	public int getDamage() {
+		return damage;
+	}
+	public int getAttacks_per_second() {
+		return attacks_per_second;
+	}
+	
+}

@@ -1,0 +1,8 @@
+
+public class Slot {
+	public static final String Head = "";
+	public static final String Body = "";
+	public static final String Legs = "";
+	public static final String Weapon = "";
+
+}

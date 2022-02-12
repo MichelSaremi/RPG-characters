@@ -1,0 +1,44 @@
+
+public abstract class Item {
+	
+	//---attributes
+	private String name;
+	private int required_level;
+	private String[] slot;
+	private String[] character;
+	
+	//---constructors
+	public Item() {
+	}
+	
+	public Item(String name, int required_level) {
+		this.name = name;
+		this.required_level = required_level;
+	}
+	
+	public Item(String name, int required_level, String[] character) {
+		this.name = name;
+		this.required_level = required_level;
+	}
+	
+	public Item(String name, int required_level, String[] slot, String[] character) {
+		this.name = name;
+		this.required_level = required_level;
+		this.slot = slot;
+		this.character = character;
+	}
+	
+	//---getters
+	public String getName() {
+		return name;
+	}
+	public int getRequired_level() {
+		return required_level;
+	}
+	public String[] getSlot() {
+		return slot;
+	}
+	public String[] getChar() {
+		return character;
+	}
+}

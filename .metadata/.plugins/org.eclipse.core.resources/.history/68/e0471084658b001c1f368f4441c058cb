@@ -1,0 +1,15 @@
+
+public abstract class Item {
+	
+	private String name;
+	private int required_level;
+	private String[] slot;
+	
+	public Item() {
+	}
+	public Item(String name, int required_level, String[] slot) {
+		this.name = name;
+		this.required_level = required_level;
+		this.slot = slot;
+	}
+}

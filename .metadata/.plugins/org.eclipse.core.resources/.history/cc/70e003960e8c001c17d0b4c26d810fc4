@@ -1,0 +1,8 @@
+
+public class InvalidWeaponExceptionClass extends Exception{
+	
+	public InvalidWeaponExceptionClass(String message) {
+		super(message);
+	}
+
+}
