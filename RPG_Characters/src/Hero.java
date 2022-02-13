@@ -12,9 +12,9 @@ public class Hero {
 	private int base_Dexterity;
 	private int base_Intelligence;
 	
-	private int total_Strength;
-	private int total_Dexterity;
-	private int total_Intelligence;
+	private float total_Strength;
+	private float total_Dexterity;
+	private float total_Intelligence;
 	
 	private int mainPrimaryAtt;
 	
@@ -63,6 +63,10 @@ public class Hero {
 		equipment.put("Weapon", weapon);
 	}
 	
+	public void setArmor(Armor armor, String slot) {
+		equipment.put(slot, armor);
+	}
+	
 	//---getters
 	public String getName() {
 		return name;
@@ -82,13 +86,13 @@ public class Hero {
 	public int getBase_Intelligence() {
 		return base_Intelligence;
 	}
-	public int getTotal_Strength() {
+	public float getTotal_Strength() {
 		return total_Strength;
 	}
-	public int getTotal_Dexterity() {
+	public float getTotal_Dexterity() {
 		return total_Dexterity;
 	}
-	public int getTotal_Intelligence() {
+	public float getTotal_Intelligence() {
 		return total_Intelligence;
 	}
 	public int getMainPrimaryAtt() {
@@ -100,6 +104,8 @@ public class Hero {
 	public Weapon getWeapon() {
 		return (Weapon) equipment.get("Weapon");
 	}
-	
+	public String getArmor(String slot) {
+		return ((Armor) equipment.get(slot)).getName();
+	}
 }	
 	

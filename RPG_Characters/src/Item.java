@@ -32,6 +32,7 @@ public abstract class Item {
 		this.slot.add(slot[2]);
 		this.character.add(character[0]);
 		this.character.add(character[1]);
+		this.character.add(character[2]);
 	}
 	
 	//---getters
