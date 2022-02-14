@@ -8,9 +8,9 @@ public class Hero {
 	private int level = 1;
 	
 	//---attributes
-	private int base_Strength;
-	private int base_Dexterity;
-	private int base_Intelligence;
+	private float base_Strength;
+	private float base_Dexterity;
+	private float base_Intelligence;
 	
 	private float total_Strength;
 	private float total_Dexterity;
@@ -40,12 +40,12 @@ public class Hero {
 		
 	}
 	//---setters
-	public void setBaseAtt(int base_Strength, int base_Dexterity, int base_Intelligence) {
+	public void setBaseAtt(float base_Strength, float base_Dexterity, float base_Intelligence) {
 		this.base_Strength = base_Strength;
 		this.base_Dexterity = base_Dexterity;
 		this.base_Intelligence = base_Intelligence;
 	}
-	public void setTotalAtt(int total_Strength, int total_Dexterity, int total_Intelligence) {
+	public void setTotalAtt(float total_Strength, float total_Dexterity, float total_Intelligence) {
 		this.total_Strength = total_Strength;
 		this.total_Dexterity = total_Dexterity;
 		this.total_Intelligence = total_Intelligence;
@@ -77,13 +77,13 @@ public class Hero {
 	public int getLevel() {
 		return level;
 	}
-	public int getBase_Strength() {
+	public float getBase_Strength() {
 		return base_Strength;
 	}
-	public int getBase_Dexterity() {
+	public float getBase_Dexterity() {
 		return base_Dexterity;
 	}
-	public int getBase_Intelligence() {
+	public float getBase_Intelligence() {
 		return base_Intelligence;
 	}
 	public float getTotal_Strength() {
@@ -104,8 +104,11 @@ public class Hero {
 	public Weapon getWeapon() {
 		return (Weapon) equipment.get("Weapon");
 	}
-	public String getArmor(String slot) {
+	public String getArmorName(String slot) {
 		return ((Armor) equipment.get(slot)).getName();
+	}
+	public Armor getArmor(String slot) {
+		return (Armor) equipment.get(slot);
 	}
 }	
 	

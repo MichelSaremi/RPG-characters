@@ -130,12 +130,11 @@ public class RPGCharacters {
 			int new_level = player.getLevel() + 1;
 			player.setLevel(new_level);
 			
-			int new_strength = player.getBase_Strength() + 3;
-			int new_Dexterity = player.getBase_Dexterity() + 2;
-			int new_Intelligence = player.getBase_Intelligence() + 1;
+			float new_strength = player.getBase_Strength() + 3;
+			float new_Dexterity = player.getBase_Dexterity() + 2;
+			float new_Intelligence = player.getBase_Intelligence() + 1;
 			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
-			player.setTotalAtt(new_strength, new_Dexterity, new_Intelligence);
-			statsDisplay();
+			updateStatsWithArmor(); 
 		}
 		
 		if (choice[0].equals("level up") && player.getChar().equals("Rogue")) {
@@ -143,12 +142,11 @@ public class RPGCharacters {
 			int new_level = player.getLevel() + 1;
 			player.setLevel(new_level);
 			
-			int new_strength = player.getBase_Strength() + 1;
-			int new_Dexterity = player.getBase_Dexterity() + 4;
-			int new_Intelligence = player.getBase_Intelligence() + 1;
+			float new_strength = player.getBase_Strength() + 1;
+			float new_Dexterity = player.getBase_Dexterity() + 4;
+			float new_Intelligence = player.getBase_Intelligence() + 1;
 			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
-			player.setTotalAtt(new_strength, new_Dexterity, new_Intelligence);
-			statsDisplay();
+			updateStatsWithArmor(); 
 		}
 		
 		if (choice[0].equals("level up") && player.getChar().equals("Ranger")) {
@@ -156,15 +154,11 @@ public class RPGCharacters {
 			int new_level = player.getLevel() + 1;
 			player.setLevel(new_level);
 			
-			int new_strength = player.getBase_Strength() + 1;
-			int new_Dexterity = player.getBase_Dexterity() + 5;
-			int new_Intelligence = player.getBase_Intelligence() + 1;
+			float new_strength = player.getBase_Strength() + 1;
+			float new_Dexterity = player.getBase_Dexterity() + 5;
+			float new_Intelligence = player.getBase_Intelligence() + 1;
 			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
-			player.setTotalAtt(new_strength, new_Dexterity, new_Intelligence);
-			if (player.getWeapon()!= null) {
-				
-			}
-			statsDisplay();
+			updateStatsWithArmor(); 
 		}
 		
 		if (choice[0].equals("level up") && player.getChar().equals("Mage")) {
@@ -172,12 +166,11 @@ public class RPGCharacters {
 			int new_level = player.getLevel() + 1;
 			player.setLevel(new_level);
 			
-			int new_strength = player.getBase_Strength() + 1;
-			int new_Dexterity = player.getBase_Dexterity() + 1;
-			int new_Intelligence = player.getBase_Intelligence() + 5;
+			float new_strength = player.getBase_Strength() + 1;
+			float new_Dexterity = player.getBase_Dexterity() + 1;
+			float new_Intelligence = player.getBase_Intelligence() + 5;
 			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
-			player.setTotalAtt(new_strength, new_Dexterity, new_Intelligence);
-			statsDisplay();
+			updateStatsWithArmor(); 
 		}
 		
 		//---Display weapons
@@ -195,7 +188,6 @@ public class RPGCharacters {
 			} catch (InvalidWeaponException e) {
 				e.printStackTrace();
 			}
-			updateStatsWithWeapon();
 		}
 		
 		//---Display armor
@@ -209,20 +201,23 @@ public class RPGCharacters {
 		if (choice[0].equals("equip armor") && (choice[2].equals("Head") || choice[2].equals("Body") || choice[2].equals("Legs"))) {
 			try {
 				equipArmor();
-				System.out.println("Hero "+choice[2]+" equiped with "+player.getArmor(choice[2]));
+				System.out.println("Hero "+choice[2]+" equiped with "+player.getArmorName(choice[2]));
 			} catch (InvalidArmorException e) {
 				e.printStackTrace();
 			}
 			updateStatsWithArmor();
+			
 		}else if (choice[0].equals("equip armor") && (!choice[2].equals("Head") || !choice[2].equals("Body") || !choice[2].equals("Legs")) ) {
 			System.out.println("You can only equip armor on Head, Body or Legs !");
 		}
 		
 		
 		if (player != null && player.getWeapon()== null) {
-			damagePerSecond();
-			System.out.println("total strength "+player.getTotal_Strength());
+			damagePerSecondNoWeapon();
+		}else if(player != null && player.getWeapon()!= null) {
+			updateStatsWithWeapon();
 		}
+		statsDisplay();
 		
 		//---Display status
 		//---Enter status
@@ -247,6 +242,7 @@ public class RPGCharacters {
 				}
 				else {
 					player.setArmor(item, choice[2]);
+					System.out.println("true");
 				}
 			}
 		}
@@ -265,11 +261,49 @@ public class RPGCharacters {
 					}
 					else {
 						player.setWeapon(item);
+						System.out.println("true");
 					}
 			}
 	}
 	}
 	private void updateStatsWithArmor() {
+		
+		float base_str = player.getBase_Strength(); 
+		float base_dex = player.getBase_Dexterity(); 
+		float base_int = player.getBase_Intelligence();
+		
+		int head_str = 0; 
+		int head_dex = 0; 
+		int head_int = 0;
+		
+		int body_str = 0; 
+		int body_dex = 0; 
+		int body_int = 0;
+		
+		int legs_str = 0; 
+		int legs_dex = 0; 
+		int legs_int = 0;
+		
+		if(player.getArmor("Head")!=null) {
+			head_str = player.getArmor("Head").getStrength();
+			head_dex = player.getArmor("Head").getDexterity();
+			head_int = player.getArmor("Head").getIntelligence();
+		}
+		if(player.getArmor("Body")!=null) {
+			body_str = player.getArmor("Body").getStrength();
+			body_dex = player.getArmor("Body").getDexterity();
+			body_int = player.getArmor("Body").getIntelligence();
+		}
+		if(player.getArmor("Legs")!=null) {
+			legs_str = player.getArmor("Legs").getStrength();
+			legs_dex = player.getArmor("Legs").getDexterity();
+			legs_int = player.getArmor("Legs").getIntelligence();
+		}
+		
+		float new_str = base_str + head_str + body_str + legs_str;
+		float new_dex = base_dex + head_dex + body_dex + legs_dex;
+		float new_int = base_int + head_int + body_int + legs_int;
+		player.setTotalAtt(new_str, new_dex, new_int);	
 		
 	}
 	
@@ -280,22 +314,45 @@ public class RPGCharacters {
 		double weaponDmg = (double) player.getWeapon().getDamage();
 		double weaponDmgPerSec = weaponDmg * weaponAttackPerSec;
 		
-		if (player.getChar().equals("Warrior")) {
-			double CharDPS = weaponDmgPerSec*(1+(player.getTotal_Strength()/100));
-			player.setDPS(CharDPS);
+		if (player.getArmor("Head")!=null||player.getArmor("Body")!=null || player.getArmor("Legs")!=null) {
+			
+			if (player.getChar().equals("Warrior")) {
+				double CharDPS = weaponDmgPerSec*(1+(player.getTotal_Strength()/100));
+				player.setDPS(CharDPS);
+			}
+			else if (player.getChar().equals("Rogue")) {
+				double CharDPS = weaponDmgPerSec*(1+(player.getTotal_Dexterity()/100));
+				player.setDPS(CharDPS);
+			}
+			else if (player.getChar().equals("Ranger")) {
+				double CharDPS = weaponDmgPerSec*(1+(player.getTotal_Dexterity()/100));
+				player.setDPS(CharDPS);
+			}
+			else if (player.getChar().equals("Mage")) {
+				double CharDPS = weaponDmgPerSec*(1+(player.getTotal_Intelligence()/100));
+				player.setDPS(CharDPS);
+			}
+			
+		}else if (player.getArmor("Head")==null && player.getArmor("Body")==null && player.getArmor("Legs")==null) {
+			
+			if (player.getChar().equals("Warrior")) {
+				double CharDPS = weaponDmgPerSec*(1+(player.getBase_Strength()/100));
+				player.setDPS(CharDPS);
+			}
+			else if (player.getChar().equals("Rogue")) {
+				double CharDPS = weaponDmgPerSec*(1+(player.getBase_Dexterity()/100));
+				player.setDPS(CharDPS);
+			}
+			else if (player.getChar().equals("Ranger")) {
+				double CharDPS = weaponDmgPerSec*(1+(player.getBase_Dexterity()/100));
+				player.setDPS(CharDPS);
+			}
+			else if (player.getChar().equals("Mage")) {
+				double CharDPS = weaponDmgPerSec*(1+(player.getBase_Intelligence()/100));
+				player.setDPS(CharDPS);
+			}
 		}
-		else if (player.getChar().equals("Rogue")) {
-			double CharDPS = weaponDmgPerSec*(1+(player.getTotal_Dexterity()/100));
-			player.setDPS(CharDPS);
-		}
-		else if (player.getChar().equals("Ranger")) {
-			double CharDPS = weaponDmgPerSec*(1+(player.getTotal_Dexterity()/100));
-			player.setDPS(CharDPS);
-		}
-		else if (player.getChar().equals("Mage")) {
-			double CharDPS = weaponDmgPerSec*(1+(player.getTotal_Intelligence()/100));
-			player.setDPS(CharDPS);
-		}
+		
 	}
 	
 	private void commandinput() {
@@ -309,25 +366,42 @@ public class RPGCharacters {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 		
-		StringBuilder stats = new StringBuilder();
-		stats.append("----------------------- \n");
-		stats.append("Hero stats \n");
-		stats.append("---------- \n");
-		stats.append("Name : "+player.getName()+"\n");
-		stats.append("Type : "+player.getChar()+"\n");
-		stats.append("Level : "+player.getLevel()+"\n");
-		stats.append("Strength :"+player.getTotal_Strength()+"\n");
-		stats.append("Dexterity :"+player.getTotal_Dexterity()+"\n");
-		stats.append("Intelligence :"+player.getTotal_Intelligence()+"\n");
-		stats.append("Damage per second :"+df.format(player.getDPS())+"\n");
-		stats.append("----------------------- \n");
-		System.out.println(stats);
+		if (player.getArmor("Head")!=null||player.getArmor("Body")!=null || player.getArmor("Legs")!=null) {
+			StringBuilder stats = new StringBuilder();
+			stats.append("----------------------- \n");
+			stats.append("Hero stats \n");
+			stats.append("---------- \n");
+			stats.append("Name : "+player.getName()+"\n");
+			stats.append("Type : "+player.getChar()+"\n");
+			stats.append("Level : "+player.getLevel()+"\n");
+			stats.append("Strength :"+player.getTotal_Strength()+"\n");
+			stats.append("Dexterity :"+player.getTotal_Dexterity()+"\n");
+			stats.append("Intelligence :"+player.getTotal_Intelligence()+"\n");
+			stats.append("Damage per second :"+df.format(player.getDPS())+"\n");
+			stats.append("----------------------- \n");
+			System.out.println(stats);
+		
+		}else if (player.getArmor("Head")==null && player.getArmor("Body")==null && player.getArmor("Legs")==null) {
+			StringBuilder stats = new StringBuilder();
+			stats.append("----------------------- \n");
+			stats.append("Hero stats \n");
+			stats.append("---------- \n");
+			stats.append("Name : "+player.getName()+"\n");
+			stats.append("Type : "+player.getChar()+"\n");
+			stats.append("Level : "+player.getLevel()+"\n");
+			stats.append("Strength :"+player.getBase_Strength()+"\n");
+			stats.append("Dexterity :"+player.getBase_Dexterity()+"\n");
+			stats.append("Intelligence :"+player.getBase_Intelligence()+"\n");
+			stats.append("Damage per second :"+df.format(player.getDPS())+"\n");
+			stats.append("----------------------- \n");
+			System.out.println(stats);
+		}
+		
 	}
 	
-	private void damagePerSecond() {
+	private void damagePerSecondNoWeapon() {
 		if (player.getChar().equals("Warrior")) {
 			double CharDPS = 1*(1+(player.getTotal_Strength()/100));
-			System.out.println("charDPS "+CharDPS);
 			player.setDPS(CharDPS);
 		}
 		else if (player.getChar().equals("Rogue")) {
