@@ -21,11 +21,13 @@ public class Armor extends Item {
 	public String getArmorType() {
 		return armortype;
 	}
-	public ArrayList<Integer> getArmorAttributes() {
-		ArrayList<Integer> att = new ArrayList();
-		att.add(strength_add); 
-		att.add(dexterity_add); 
-		att.add(intelligence_add);
-		return att;
+	public int getStrength() {
+		return strength_add;
+	}
+	public int getDexterity() {
+		return dexterity_add;
+	}
+	public int getIntelligence() {
+		return intelligence_add;
 	}
 }
