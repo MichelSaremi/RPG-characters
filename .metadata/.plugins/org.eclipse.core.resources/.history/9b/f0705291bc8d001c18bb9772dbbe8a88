@@ -135,8 +135,6 @@ public class RPGCharacters {
 			System.out.println("Welcome "+choice[1]+" the "+choice[2]);
 		}
 		
-		if (player != null) {
-		
 		//---level up hero
 		//---adds to main attributes
 		//---Four different level up scenarios, one for each class
@@ -234,10 +232,10 @@ public class RPGCharacters {
 		}
 		
 		//---damage per second calculated if there are no weapons equipped
-		if (player.getWeapon()== null) {
+		if (player != null && player.getWeapon()== null) {
 			damagePerSecondNoWeapon();
 		//---damage per second calculated if weapons are equipped
-		}else if(player.getWeapon()!= null) {
+		}else if(player != null && player.getWeapon()!= null) {
 			updateStatsWithWeapon();
 		}
 		
@@ -249,12 +247,6 @@ public class RPGCharacters {
 		if (choice[0].equals("status")) {
 			statsDisplay();
 		}
-		
-		//---if no hero is created prompt user
-		}else {
-			System.out.println("To start choose your class");
-		}
-		
 		//---return to ask for input
 		continue;
 		}

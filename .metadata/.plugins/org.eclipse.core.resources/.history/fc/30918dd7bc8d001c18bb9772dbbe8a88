@@ -250,7 +250,6 @@ public class RPGCharacters {
 			statsDisplay();
 		}
 		
-		//---if no hero is created prompt user
 		}else {
 			System.out.println("To start choose your class");
 		}
