@@ -34,6 +34,7 @@ public class Hero {
 		this.base_Intelligence = base_Intelligence;
 		this.mainPrimaryAtt = mainPrimaryAtt;
 		
+		//---total attributes initially set to base value
 		this.total_Strength = base_Strength;
 		this.total_Dexterity = base_Dexterity;
 		this.total_Intelligence = base_Intelligence;

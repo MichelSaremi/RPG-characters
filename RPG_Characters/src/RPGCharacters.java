@@ -1,17 +1,15 @@
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class RPGCharacters {
 
 	
-	private static final String String = null;
 	String[] choice; 
 	Hero player;
 	int charDPS;
-	ArrayList<Weapon> weaponslist = new ArrayList();
-	ArrayList<Armor> armorlist = new ArrayList();
+	ArrayList<Weapon> weaponslist = new ArrayList<Weapon>();
+	ArrayList<Armor> armorlist = new ArrayList<Armor>();
 	
 	public static void main(String[] args) {
 		
@@ -21,7 +19,9 @@ public class RPGCharacters {
 		main.Go();
 		
 	}
-
+	//---Make weapon objects and store in weapons list
+	//---Constructor parameters: 
+	//---weapon name, required lvl to equip, slot to equip, weapon type, damage, attacks per second, characters that can equip
 	private void MakeWeapons() {
 		//---axes
 		Weapon StoneAxe = new Weapon("Stone axe", 1, "weapon", "axe", 2, 1.5, new String[] {"Warrior",""});
@@ -74,7 +74,9 @@ public class RPGCharacters {
 		weaponslist.add(FireWand);
 	}
 
-	
+	//---Make armor objects and store in armor list
+	//---Constructor parameters
+	//---Parameters: armor name, required lvl to equip, slot to equip, strength gain, dexterity gain, intelligence gain, characters that can equip
 	private void MakeArmor() {
 		//---plate
 		Armor BronzePlate = new Armor("Bronze plate", 1, new String[] {"head","body","legs"},"armor",3,1,1, new String[]{"Warrior","",""});
@@ -98,14 +100,24 @@ public class RPGCharacters {
 		armorlist.add(LongCloth);
 	}
 	
-	
+	//---Where the game loops
 	private void Go() {
 		
 		while(true) {
+		
+		//---Prompt user for input, and split the input at ",",
+		//---use the word at first index to initiate further functionality
+		//---Enter -> start,your_name,your_class
 		commandinput();
-		//"Enter 'start,your_name,your_class' : ");
+		
+		//---it user types exit then exit while loop
+		if (choice[0].equals("exit")) {
+			System.out.println("Thank you for playing, goodbye.");
+			break;
+		}
 		
 		//---Building the hero
+		//---third word decides which hero to build
 		if(choice[0].equals("start") && choice[2].equals("Warrior")) {
 			player = new Hero(choice[1], choice[2], 5, 2, 1, 5);
 			System.out.println("Welcome "+choice[1]+" the "+choice[2]);
@@ -124,7 +136,11 @@ public class RPGCharacters {
 		}
 		
 		//---level up hero
-		//---enter level up
+		//---adds to main attributes
+		//---Four different level up scenarios, one for each class
+		//---Enter -> level up
+		
+		//---for warrior
 		if (choice[0].equals("level up") && player.getChar().equals("Warrior")) {
 			
 			int new_level = player.getLevel() + 1;
@@ -136,7 +152,7 @@ public class RPGCharacters {
 			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
 			updateStatsWithArmor(); 
 		}
-		
+		//---for rogue
 		if (choice[0].equals("level up") && player.getChar().equals("Rogue")) {
 			
 			int new_level = player.getLevel() + 1;
@@ -148,7 +164,7 @@ public class RPGCharacters {
 			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
 			updateStatsWithArmor(); 
 		}
-		
+		//---for ranger
 		if (choice[0].equals("level up") && player.getChar().equals("Ranger")) {
 			
 			int new_level = player.getLevel() + 1;
@@ -161,6 +177,7 @@ public class RPGCharacters {
 			updateStatsWithArmor(); 
 		}
 		
+		//---for mage
 		if (choice[0].equals("level up") && player.getChar().equals("Mage")) {
 			
 			int new_level = player.getLevel() + 1;
@@ -173,14 +190,14 @@ public class RPGCharacters {
 			updateStatsWithArmor(); 
 		}
 		
-		//---Display weapons
-		//---Enter display weapons
+		//---Display available weapons
+		//---Enter -> display weapons
 		if (choice[0].equals("display weapons")) {
 			weaponsDisplay();
 		}
 		
 		//---Equip weapons
-		//---Enter equip weapon,weapon name
+		//---Enter -> equip weapon,weapon name
 		if (choice[0].equals("equip weapon")) {
 			try {
 				equipWeapon();
@@ -190,57 +207,70 @@ public class RPGCharacters {
 			}
 		}
 		
-		//---Display armor
-		//---Enter display armor
+		//---Display available armor 
+		//---Enter -> display armor
 		if(choice[0].equals("display armor")) {
 			armorDisplay();
 		}
 		
 		//---Equip armor
+		//---armor can only be equiped at "Head", "Body" or "Legs"
 		//---Enter equip armor,armor name,slot
 		if (choice[0].equals("equip armor") && (choice[2].equals("Head") || choice[2].equals("Body") || choice[2].equals("Legs"))) {
 			try {
+				//---armor is equiped
 				equipArmor();
 				System.out.println("Hero "+choice[2]+" equiped with "+player.getArmorName(choice[2]));
 			} catch (InvalidArmorException e) {
 				e.printStackTrace();
 			}
+			//---primary attributes are update by armor
 			updateStatsWithArmor();
 			
 		}else if (choice[0].equals("equip armor") && (!choice[2].equals("Head") || !choice[2].equals("Body") || !choice[2].equals("Legs")) ) {
 			System.out.println("You can only equip armor on Head, Body or Legs !");
 		}
 		
-		
+		//---damage per second calculated if there are no weapons equipped
 		if (player != null && player.getWeapon()== null) {
 			damagePerSecondNoWeapon();
+		//---damage per second calculated if weapons are equipped
 		}else if(player != null && player.getWeapon()!= null) {
 			updateStatsWithWeapon();
 		}
+		
+		//---automatically display status at the end of each command
 		statsDisplay();
 		
-		//---Display status
-		//---Enter status
+		//---Display status of the player
+		//---Enter -> status
 		if (choice[0].equals("status")) {
 			statsDisplay();
 		}
-		
+		//---return to ask for input
 		continue;
 		}
 	}
+	//---Methods called in go()
 	
+	//---equip armor if player class is valid and player level is valid
 	private void equipArmor() throws InvalidArmorException {
 		for(Armor item : armorlist) {
 			if (item.getName().equals(choice[1])) {
 				if (!item.getChar().get(0).equals(player.getChar()) 
 					&& !item.getChar().get(1).equals(player.getChar()) 
 					&& !item.getChar().get(2).equals(player.getChar())) {
+					
+						//---throw exception if armor not applicable to class
 						throw new InvalidArmorException("This armor is not available to your class!");
 						
 				}else if(item.getRequired_level()>player.getLevel()) {
+					
+						//---throw exception if armor not applicable to level
 						throw new InvalidArmorException("You dont have sufficient level to equip armor!");
 				}
 				else {
+					//---otherwise equip armor at desired slot
 					player.setArmor(item, choice[2]);
 					System.out.println("true");
 				}
@@ -248,30 +278,38 @@ public class RPGCharacters {
 		}
 	}
 	
-	
-	
+	//---equip level if player class is valid and player level is valid
 	private void equipWeapon() throws InvalidWeaponException {
 		for(Weapon item : weaponslist) {
 			if (item.getName().equals(choice[1])) {
 					if (!item.getChar().get(0).equals(player.getChar()) && !item.getChar().get(1).equals(player.getChar())) {
+						
+						//---throw exception if weapon not applicable to class
 						throw new InvalidWeaponException("This weapon is not available to your class!");
 					}
 					else if (item.getRequired_level()>player.getLevel()) {
+						
+						//---throw exception if armor not applicable to level
 						throw new InvalidWeaponException("You dont have sufficient level to equip weapon!");
 					}
 					else {
+						//---otherwise equip weapon 
 						player.setWeapon(item);
 						System.out.println("true");
 					}
 			}
 	}
 	}
+	
+	//---update total attributes once armor is equipped
 	private void updateStatsWithArmor() {
 		
+		//---get base values
 		float base_str = player.getBase_Strength(); 
 		float base_dex = player.getBase_Dexterity(); 
 		float base_int = player.getBase_Intelligence();
 		
+		//---set initial armor attributes to zero
 		int head_str = 0; 
 		int head_dex = 0; 
 		int head_int = 0;
@@ -284,6 +322,7 @@ public class RPGCharacters {
 		int legs_dex = 0; 
 		int legs_int = 0;
 		
+		//---change initial atributes with armor attributes
 		if(player.getArmor("Head")!=null) {
 			head_str = player.getArmor("Head").getStrength();
 			head_dex = player.getArmor("Head").getDexterity();
@@ -300,6 +339,7 @@ public class RPGCharacters {
 			legs_int = player.getArmor("Legs").getIntelligence();
 		}
 		
+		//---add all attributes together and set in hero
 		float new_str = base_str + head_str + body_str + legs_str;
 		float new_dex = base_dex + head_dex + body_dex + legs_dex;
 		float new_int = base_int + head_int + body_int + legs_int;
@@ -307,13 +347,14 @@ public class RPGCharacters {
 		
 	}
 	
-	
+	//---update damage per second(DPS) when weapon is equipped
 	private void updateStatsWithWeapon() {
 		
 		double weaponAttackPerSec = (double) player.getWeapon().getAttacks_per_second();
 		double weaponDmg = (double) player.getWeapon().getDamage();
 		double weaponDmgPerSec = weaponDmg * weaponAttackPerSec;
 		
+		//---update DPS when armor is contributing
 		if (player.getArmor("Head")!=null||player.getArmor("Body")!=null || player.getArmor("Legs")!=null) {
 			
 			if (player.getChar().equals("Warrior")) {
@@ -332,7 +373,8 @@ public class RPGCharacters {
 				double CharDPS = weaponDmgPerSec*(1+(player.getTotal_Intelligence()/100));
 				player.setDPS(CharDPS);
 			}
-			
+		
+		//---update DPS when NO armor is contributing
 		}else if (player.getArmor("Head")==null && player.getArmor("Body")==null && player.getArmor("Legs")==null) {
 			
 			if (player.getChar().equals("Warrior")) {
@@ -355,17 +397,20 @@ public class RPGCharacters {
 		
 	}
 	
+	//---prompts user for input and splits input at ","
 	private void commandinput() {
 		System.out.println("Enter your command : ");
 		Scanner input = new Scanner(System.in); 
 		String Cstring = input.nextLine();
 		choice = Cstring.split(",");
-		
 	}
+	
+	//---Display stats
 	private void statsDisplay() {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 		
+		//---display when armor is equipped
 		if (player.getArmor("Head")!=null||player.getArmor("Body")!=null || player.getArmor("Legs")!=null) {
 			StringBuilder stats = new StringBuilder();
 			stats.append("----------------------- \n");
@@ -381,6 +426,7 @@ public class RPGCharacters {
 			stats.append("----------------------- \n");
 			System.out.println(stats);
 		
+		//---display when NO armor is equipped
 		}else if (player.getArmor("Head")==null && player.getArmor("Body")==null && player.getArmor("Legs")==null) {
 			StringBuilder stats = new StringBuilder();
 			stats.append("----------------------- \n");
@@ -399,6 +445,7 @@ public class RPGCharacters {
 		
 	}
 	
+	//---calculate damage per second, when no weapon is equipped
 	private void damagePerSecondNoWeapon() {
 		if (player.getChar().equals("Warrior")) {
 			double CharDPS = 1*(1+(player.getTotal_Strength()/100));
@@ -417,7 +464,7 @@ public class RPGCharacters {
 			player.setDPS(CharDPS);
 		}	
 	}
-
+	//---lists all armor available with respective values
 	private void armorDisplay() {
 		StringBuilder armor = new StringBuilder();
 		armor.append("----------------------- \n");
@@ -437,6 +484,7 @@ public class RPGCharacters {
 		System.out.println(armor);
 	}
 	
+	//---lists all weapons available with respective values
 	private void weaponsDisplay() {
 		StringBuilder weapons = new StringBuilder();
 		weapons.append("----------------------- \n");

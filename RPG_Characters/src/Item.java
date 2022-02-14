@@ -7,24 +7,21 @@ public abstract class Item {
 	private int required_level;
 	private ArrayList<String> slot = new ArrayList<String>();
 	private ArrayList<String> character = new ArrayList<String>();
+	private String type;
 	
 	//---constructors
-	public Item() {
-	}
+	//---type is not used here but was added as it was displayed in Appendix C
 	
-	public Item(String name, int required_level) {
-		this.name = name;
-		this.required_level = required_level;
-	}
-	
-	public Item(String name, int required_level, String[] character) {
+	//---used by Weapon class
+	public Item(String name, int required_level, String[] character, String type) {
 		this.name = name;
 		this.required_level = required_level;
 		this.character.add(character[0]);
 		this.character.add(character[1]);
+		this.type = type;
 	}
-	
-	public Item(String name, int required_level, String[] slot, String[] character) {
+	//---used by Armor class
+	public Item(String name, int required_level, String[] slot, String[] character, String type) {
 		this.name = name;
 		this.required_level = required_level;
 		this.slot.add(slot[0]);
@@ -33,6 +30,7 @@ public abstract class Item {
 		this.character.add(character[0]);
 		this.character.add(character[1]);
 		this.character.add(character[2]);
+		this.type = type;
 	}
 	
 	//---getters
@@ -47,5 +45,8 @@ public abstract class Item {
 	}
 	public ArrayList<String> getChar() {
 		return character;
+	}
+	public String getType() {
+		return type;
 	}
 }
