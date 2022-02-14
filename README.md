@@ -6,7 +6,7 @@ each class can equip certain weapons and armor.
 
 How to use the RPG character console application:
 
-when startin the application you will be propted for input.
+when starting the application you will be propted for input.
 
 ---------------------------------------------------------
 To start using the application type (without space):
