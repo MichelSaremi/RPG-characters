@@ -119,19 +119,19 @@ public class RPGCharacters {
 		//---Building the hero
 		//---third word decides which hero to build
 		if(choice[0].equals("start") && choice[2].equals("Warrior")) {
-			player = new Hero(choice[1], choice[2], 5, 2, 1);
+			player = new Hero(choice[1], choice[2], 5, 2, 1, 5);
 			System.out.println("Welcome "+choice[1]+" the "+choice[2]);
 		}	
 		else if(choice[0].equals("start") && choice[2].equals("Rogue")) {
-			player = new Hero(choice[1], choice[2], 2, 6, 1);
+			player = new Hero(choice[1], choice[2], 2, 6, 1, 6);
 			System.out.println("Welcome "+choice[1]+" the "+choice[2]);
 		}
 		else if(choice[0].equals("start") && choice[2].equals("Ranger")) {
-			player = new Hero(choice[1], choice[2], 1, 7, 1);
+			player = new Hero(choice[1], choice[2], 1, 7, 1, 7);
 			System.out.println("Welcome "+choice[1]+" the "+choice[2]);
 		}
 		else if(choice[0].equals("start") && choice[2].equals("Mage")) {
-			player = new Hero(choice[1], choice[2], 1, 1, 8);
+			player = new Hero(choice[1], choice[2], 1, 1, 8, 8);
 			System.out.println("Welcome "+choice[1]+" the "+choice[2]);
 		}
 		
