@@ -16,7 +16,6 @@ public class Hero {
 	private float total_Dexterity;
 	private float total_Intelligence;
 	
-	private int mainPrimaryAtt;
 	
 	//---damage
 	private double damage_per_second;
@@ -95,9 +94,7 @@ public class Hero {
 	public float getTotal_Intelligence() {
 		return total_Intelligence;
 	}
-	public int getMainPrimaryAtt() {
-		return mainPrimaryAtt;
-	}
+
 	public double getDPS() {
 		return damage_per_second;
 	}

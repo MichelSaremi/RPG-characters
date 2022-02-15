@@ -22,7 +22,7 @@ public class RPGCharacters {
 	//---Make weapon objects and store in weapons list
 	//---Constructor parameters: 
 	//---weapon name, required lvl to equip, damage, attacks per second, characters that can equip
-	private void MakeWeapons() {
+	public void MakeWeapons() {
 		//---axes
 		Weapon StoneAxe = new Weapon("Stone axe", 1, 2, 1.5, new String[] {"Warrior","",""});
 		weaponslist.add(StoneAxe);
@@ -77,7 +77,7 @@ public class RPGCharacters {
 	//---Make armor objects and store in armor list
 	//---Constructor parameters
 	//---Parameters: armor name, required lvl to equip, strength gain, dexterity gain, intelligence gain, characters that can equip
-	private void MakeArmor() {
+	public void MakeArmor() {
 		//---plate
 		Armor BronzePlate = new Armor("Bronze plate", 1,3,1,1, new String[]{"Warrior","",""});
 		armorlist.add(BronzePlate);
@@ -101,7 +101,7 @@ public class RPGCharacters {
 	}
 	
 	//---Where the game loops
-	private void Go() {
+	public void Go() {
 		
 		while(true) {
 		
@@ -202,7 +202,7 @@ public class RPGCharacters {
 		//---Enter -> equip weapon,weapon name
 		if (choice[0].equals("equip weapon")) {
 			try {
-				equipWeapon();
+				equipWeapon(choice[1]);
 				System.out.println("Hero equiped with "+player.getWeapon().getName());
 			} catch (InvalidWeaponException e) {
 				e.printStackTrace();
@@ -221,7 +221,7 @@ public class RPGCharacters {
 		if (choice[0].equals("equip armor") && (choice[2].equals("Head") || choice[2].equals("Body") || choice[2].equals("Legs"))) {
 			try {
 				//---armor is equiped
-				equipArmor();
+				equipArmor(choice[1],choice[2]);
 				System.out.println("Hero "+choice[2]+" equiped with "+player.getArmorName(choice[2]));
 			} catch (InvalidArmorException e) {
 				e.printStackTrace();
@@ -263,9 +263,9 @@ public class RPGCharacters {
 	//---Methods called in go()
 	
 	//---equip armor if player class is valid and player level is valid
-	private void equipArmor() throws InvalidArmorException {
+	public boolean equipArmor(String choice, String slot) throws InvalidArmorException {
 		for(Armor item : armorlist) {
-			if (item.getName().equals(choice[1])) {
+			if (item.getName().equals(choice)) {
 				if (!item.getChar().get(0).equals(player.getChar()) 
 					&& !item.getChar().get(1).equals(player.getChar()) 
 					&& !item.getChar().get(2).equals(player.getChar())) {
@@ -280,17 +280,18 @@ public class RPGCharacters {
 				}
 				else {
 					//---otherwise equip armor at desired slot
-					player.setArmor(item, choice[2]);
-					System.out.println("true");
+					player.setArmor(item, slot);
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 	
 	//---equip level if player class is valid and player level is valid
-	private void equipWeapon() throws InvalidWeaponException {
+	public boolean equipWeapon(String choice) throws InvalidWeaponException {
 		for(Weapon item : weaponslist) {
-			if (item.getName().equals(choice[1])) {
+			if (item.getName().equals(choice)) {
 					if (!item.getChar().get(0).equals(player.getChar()) && !item.getChar().get(1).equals(player.getChar())) {
 						
 						//---throw exception if weapon not applicable to class
@@ -298,20 +299,22 @@ public class RPGCharacters {
 					}
 					else if (item.getRequired_level()>player.getLevel()) {
 						
-						//---throw exception if armor not applicable to level
+						//---throw exception if weapon not applicable to level
 						throw new InvalidWeaponException("You dont have sufficient level to equip weapon!");
 					}
 					else {
 						//---otherwise equip weapon 
 						player.setWeapon(item);
-						System.out.println("true");
+						return true;
 					}
 			}
 	}
+		return false;
+	
 	}
 	
 	//---update total attributes once armor is equipped
-	private void updateStatsWithArmor() {
+	public void updateStatsWithArmor() {
 		
 		//---get base values
 		float base_str = player.getBase_Strength(); 
@@ -357,7 +360,7 @@ public class RPGCharacters {
 	}
 	
 	//---update damage per second(DPS) when weapon is equipped
-	private void updateStatsWithWeapon() {
+	public void updateStatsWithWeapon() {
 		
 		double weaponAttackPerSec = (double) player.getWeapon().getAttacks_per_second();
 		double weaponDmg = (double) player.getWeapon().getDamage();
@@ -455,7 +458,7 @@ public class RPGCharacters {
 	}
 	
 	//---calculate damage per second, when no weapon is equipped
-	private void damagePerSecondNoWeapon() {
+	public void damagePerSecondNoWeapon() {
 		if (player.getChar().equals("Warrior")) {
 			double CharDPS = 1*(1+(player.getTotal_Strength()/100));
 			player.setDPS(CharDPS);

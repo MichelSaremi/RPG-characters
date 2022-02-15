@@ -1,0 +1,29 @@
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.ArrayList;
+
+public class ItemTest {
+	
+	//---Equipping a high level weapon for warrior
+	
+	@Test
+	public void equipWeapon_LvlToHigh_InvalidWeaponExceptionWithProperMessage() {
+		RPGCharacters app = new RPGCharacters();
+		app.player = new Hero("Michel", "Warrior", 5, 2, 1);
+		app.MakeWeapons();
+		ArrayList<Weapon> weaponslist = app.weaponslist;
+		String choice = "Bronze axe";
+		String expected = "You dont have sufficient level to equip weapon!";
+		//---act
+		Exception exception = assertThrows(InvalidWeaponException.class, ()-> app.equipWeapon(choice));
+		String actual = exception.getMessage();
+		//---assert
+		assertEquals(expected,actual);
+	}
+	
+	//---Equipping a high level armor for warrior
+
+}

@@ -1,0 +1,20 @@
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class HeroTest {
+
+	//---A character is level 1 when created
+	@Test
+	public void newHero_initialLvl_lvlOne() {
+		//---arrange
+		Hero player = new Hero("Michel", "Warrior", 5, 2, 1);
+		int expected = 1;
+		//---act
+		int actual = player.getLevel();
+		//---assert
+		assertEquals(expected,actual);
+	}
+	
+}
