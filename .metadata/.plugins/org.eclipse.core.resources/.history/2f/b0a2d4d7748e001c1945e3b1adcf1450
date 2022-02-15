@@ -228,8 +228,7 @@ public class RPGCharacters {
 			}
 			//---primary attributes are update by armor
 			updateStatsWithArmor();
-		
-		//---If correct slot name not typed, user is prompted
+			
 		}else if (choice[0].equals("equip armor") && (!choice[2].equals("Head") || !choice[2].equals("Body") || !choice[2].equals("Legs")) ) {
 			System.out.println("You can only equip armor on Head, Body or Legs !");
 		}

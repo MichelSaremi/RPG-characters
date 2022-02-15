@@ -24,53 +24,53 @@ public class RPGCharacters {
 	//---weapon name, required lvl to equip, damage, attacks per second, characters that can equip
 	private void MakeWeapons() {
 		//---axes
-		Weapon StoneAxe = new Weapon("Stone axe", 1, 2, 1.5, new String[] {"Warrior","",""});
+		Weapon StoneAxe = new Weapon("Stone axe", 1, 2, 1.5, new String[] {"Warrior",""});
 		weaponslist.add(StoneAxe);
-		Weapon BronzeAxe = new Weapon("Bronze axe", 2, 4, 2, new String[] {"Warrior","",""});
+		Weapon BronzeAxe = new Weapon("Bronze axe", 2, 4, 2, new String[] {"Warrior",""});
 		weaponslist.add(BronzeAxe);
-		Weapon SteelAxe = new Weapon("Steel axe", 3, 6, 2.5, new String[] {"Warrior","",""});
+		Weapon SteelAxe = new Weapon("Steel axe", 3, 6, 2.5, new String[] {"Warrior",""});
 		weaponslist.add(SteelAxe);
 		//---hammers
-		Weapon StoneHammer = new Weapon("Stone hammer", 1, 3, 1.5, new String[] {"Warrior","",""});
+		Weapon StoneHammer = new Weapon("Stone hammer", 1, 3, 1.5, new String[] {"Warrior",""});
 		weaponslist.add(StoneHammer);
-		Weapon BronzeHammer = new Weapon("Bronze hammer", 2, 5, 2, new String[] {"Warrior","",""});
+		Weapon BronzeHammer = new Weapon("Bronze hammer", 2, 5, 2, new String[] {"Warrior",""});
 		weaponslist.add(BronzeHammer);
-		Weapon SteelHammer = new Weapon("Steel hammer", 3, 7, 2.5, new String[] {"Warrior","",""});
+		Weapon SteelHammer = new Weapon("Steel hammer", 3, 7, 2.5, new String[] {"Warrior",""});
 		weaponslist.add(SteelHammer);
 		//---swords
-		Weapon WoodenSword = new Weapon("Wooden sword", 1, 2.5, 1.5, new String[]{"Warrior","Rogue",""});
+		Weapon WoodenSword = new Weapon("Wooden sword", 1, 2.5, 1.5, new String[]{"Warrior","Rogue"});
 		weaponslist.add(WoodenSword);
-		Weapon BronzeSword = new Weapon("Bronze sword", 2, 4.5, 2, new String[]{"Warrior","Rogue",""});
+		Weapon BronzeSword = new Weapon("Bronze sword", 2, 4.5, 2, new String[]{"Warrior","Rogue"});
 		weaponslist.add(BronzeSword);
-		Weapon SteelSword = new Weapon("Steel sword", 3, 6.5, 2.5, new String[]{"Warrior","Rogue",""});
+		Weapon SteelSword = new Weapon("Steel sword", 3, 6.5, 2.5, new String[]{"Warrior","Rogue"});
 		weaponslist.add(SteelSword);
 		//---daggers
-		Weapon WoodenDagger = new Weapon("Wooden dagger", 1, 2, 1.5, new String[] {"Rogue","",""});
+		Weapon WoodenDagger = new Weapon("Wooden dagger", 1, 2, 1.5, new String[] {"Rogue",""});
 		weaponslist.add(WoodenDagger);
-		Weapon BronzeDagger = new Weapon("Bronze dagger", 2, 4, 2, new String[] {"Rogue","",""});
+		Weapon BronzeDagger = new Weapon("Bronze dagger", 2, 4, 2, new String[] {"Rogue",""});
 		weaponslist.add(BronzeDagger);
-		Weapon SteelDagger = new Weapon("Steel dagger", 3, 6, 2.5, new String[] {"Rogue","",""});
+		Weapon SteelDagger = new Weapon("Steel dagger", 3, 6, 2.5, new String[] {"Rogue",""});
 		weaponslist.add(SteelDagger);
 		//---bows
-		Weapon WoodenBow = new Weapon("Wooden bow", 1, 3, 1.5, new String[] {"Ranger","",""});
+		Weapon WoodenBow = new Weapon("Wooden bow", 1, 3, 1.5, new String[] {"Ranger",""});
 		weaponslist.add(WoodenBow);
-		Weapon CompoundBow = new Weapon("Compound bow", 2, 5, 2, new String[] {"Ranger","",""});
+		Weapon CompoundBow = new Weapon("Compound bow", 2, 5, 2, new String[] {"Ranger",""});
 		weaponslist.add(CompoundBow);
-		Weapon LongBow = new Weapon("Long bow", 3, 7, 2.5, new String[] {"Ranger","",""});
+		Weapon LongBow = new Weapon("Long bow", 3, 7, 2.5, new String[] {"Ranger",""});
 		weaponslist.add(LongBow);
 		//---staffs
-		Weapon WoodenStaff = new Weapon("Wooden staff", 1, 4, 1.5, new String[] {"Mage","",""});
+		Weapon WoodenStaff = new Weapon("Wooden staff", 1, 4, 1.5, new String[] {"Mage",""});
 		weaponslist.add(WoodenStaff);
-		Weapon ObsidianStaff = new Weapon("Obsidian staff", 2, 5, 2, new String[] {"Mage","",""});
+		Weapon ObsidianStaff = new Weapon("Obsidian staff", 2, 5, 2, new String[] {"Mage",""});
 		weaponslist.add(ObsidianStaff);
-		Weapon FireStaff = new Weapon("Fire staff", 3, 8, 2.5, new String[] {"Mage","",""});
+		Weapon FireStaff = new Weapon("Fire staff", 3, 8, 2.5, new String[] {"Mage",""});
 		weaponslist.add(FireStaff);
 		//---wands
-		Weapon WoodenWand = new Weapon("Wooden wand", 1, 3, 1.5, new String[] {"Mage","",""});
+		Weapon WoodenWand = new Weapon("Wooden wand", 1, 3, 1.5, new String[] {"Mage",""});
 		weaponslist.add(WoodenWand);
-		Weapon ObsidianWand = new Weapon("Obsidian wand", 2, 4, 2, new String[] {"Mage","",""});
+		Weapon ObsidianWand = new Weapon("Obsidian wand", 2, 4, 2, new String[] {"Mage",""});
 		weaponslist.add(ObsidianWand);
-		Weapon FireWand = new Weapon("Fire wand", 3, 6, 2.5, new String[] {"Mage","",""});
+		Weapon FireWand = new Weapon("Fire wand", 3, 6, 2.5, new String[] {"Mage",""});
 		weaponslist.add(FireWand);
 	}
 
@@ -228,8 +228,7 @@ public class RPGCharacters {
 			}
 			//---primary attributes are update by armor
 			updateStatsWithArmor();
-		
-		//---If correct slot name not typed, user is prompted
+			
 		}else if (choice[0].equals("equip armor") && (!choice[2].equals("Head") || !choice[2].equals("Body") || !choice[2].equals("Legs")) ) {
 			System.out.println("You can only equip armor on Head, Body or Legs !");
 		}

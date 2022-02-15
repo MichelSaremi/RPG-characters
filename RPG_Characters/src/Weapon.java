@@ -7,12 +7,8 @@ public class Weapon extends Item {
 	
 
 	//---constructors
-	
-	//---the slot value is not used here, but I left it in case at some point you would want to add more than one weapon slot
-	//---it is not necessary to refer to this slot until then
-	//---slot is just a placeholder here for future upgrades
-	public Weapon(String name, int req_lvl, String slot, String type, double damage, double a_p_s, String[] character) {
-		super(name, req_lvl, character, type);
+	public Weapon(String name, int req_lvl, double damage, double a_p_s, String[] character) {
+		super(name, req_lvl, character);
 		this.damage = damage;
 		this.attacks_per_second = a_p_s;
 

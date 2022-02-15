@@ -8,6 +8,9 @@ public abstract class Item {
 	private ArrayList<String> character = new ArrayList<String>();
 	
 	//---constructors
+	//---type is not used here but was added as it was displayed in Appendix C
+	
+	//---used by Weapon class
 	public Item(String name, int required_level, String[] character) {
 		this.name = name;
 		this.required_level = required_level;
