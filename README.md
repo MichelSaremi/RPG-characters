@@ -18,7 +18,7 @@ Open in Eclipse IDE and click on run while in the RPGCharacters class (Or not in
 when starting the application you will be prompted for input.
 
 ---------------------------------------------------------
-To start using the application, type in (without space):
+To start using the application, type in (without whitespace):
 
 start,your_name,your_class
 
