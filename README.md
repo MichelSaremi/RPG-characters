@@ -5,6 +5,9 @@ These are: Warrior, Rogue, Ranger, Mage.
 each class can equip certain weapons and armor.
 
 How to use the RPG character console application:
+(This assignment was completed using Eclipse).
+Open in Eclipse IDE and click on run while in the RPGCharacters class
+
 
 when starting the application you will be propted for input.
 
@@ -61,3 +64,9 @@ status
 Finally you can exit the application by typing:
 
 exit
+
+
+
+
+------------------------------------------------------
+Author :  Michel Saremi
