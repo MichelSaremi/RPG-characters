@@ -193,7 +193,7 @@ public class RPGCharacters {
 		
 		//---if no hero is created prompt user
 		}else {
-			System.out.println("To start choose your class: Warrior, Rogue, Ranger or Mage");
+			System.out.println("To start choose your class");
 		}
 		
 		//---return to ask for input
