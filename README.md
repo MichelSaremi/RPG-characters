@@ -1,8 +1,14 @@
 # RPG-characters
 
-In this console application you can choose between four characters/heroes/classes.
+In this Java based console application you can choose between four characters/heroes/classes.
 These are: Warrior, Rogue, Ranger and Mage.
 Each class can equip certain weapons and armor.
+
+
+
+Test classes that have been made to do unit testing and perform full test coverage.
+
+
 
 How to use the RPG character console application:
 (This assignment was completed using Eclipse).
