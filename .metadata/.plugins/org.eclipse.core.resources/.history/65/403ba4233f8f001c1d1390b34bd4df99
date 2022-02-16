@@ -3,8 +3,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
 public class ItemTest {
 	
+	private static final Boolean True = null;
 
 	//---Equipping a high level weapon (lvl 2) for warrior (lvl 1)
 	
