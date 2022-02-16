@@ -6,13 +6,13 @@ each class can equip certain weapons and armor.
 
 How to use the RPG character console application:
 (This assignment was completed using Eclipse).
-Open in Eclipse IDE and click on run while in the RPGCharacters class
+Open in Eclipse IDE and click on run while in the RPGCharacters class (Or not in the test classes)
 
 
-when starting the application you will be propted for input.
+when starting the application you will be prompted for input.
 
 ---------------------------------------------------------
-To start using the application type (without space):
+To start using the application, type in (without space):
 
 start,your_name,your_class
 
