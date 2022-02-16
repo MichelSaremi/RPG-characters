@@ -118,21 +118,8 @@ public class RPGCharacters {
 		
 		//---Building the hero
 		//---third word decides which hero to build
-		if(choice[0].equals("start") && choice[2].equals("Warrior")) {
-			player = new Hero(choice[1], choice[2], 5, 2, 1);
-			System.out.println("Welcome "+choice[1]+" the "+choice[2]);
-		}	
-		else if(choice[0].equals("start") && choice[2].equals("Rogue")) {
-			player = new Hero(choice[1], choice[2], 2, 6, 1);
-			System.out.println("Welcome "+choice[1]+" the "+choice[2]);
-		}
-		else if(choice[0].equals("start") && choice[2].equals("Ranger")) {
-			player = new Hero(choice[1], choice[2], 1, 7, 1);
-			System.out.println("Welcome "+choice[1]+" the "+choice[2]);
-		}
-		else if(choice[0].equals("start") && choice[2].equals("Mage")) {
-			player = new Hero(choice[1], choice[2], 1, 1, 8);
-			System.out.println("Welcome "+choice[1]+" the "+choice[2]);
+		if(choice[0].equals("start")) {
+			buildHero(choice[1],choice[2]);
 		}
 		
 		if (player != null) {
@@ -141,55 +128,8 @@ public class RPGCharacters {
 		//---adds to main attributes
 		//---Four different level up scenarios, one for each class
 		//---Enter -> level up
-		
-		//---for warrior
-		if (choice[0].equals("level up") && player.getChar().equals("Warrior")) {
-			
-			int new_level = player.getLevel() + 1;
-			player.setLevel(new_level);
-			
-			float new_strength = player.getBase_Strength() + 3;
-			float new_Dexterity = player.getBase_Dexterity() + 2;
-			float new_Intelligence = player.getBase_Intelligence() + 1;
-			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
-			updateStatsWithArmor(); 
-		}
-		//---for rogue
-		if (choice[0].equals("level up") && player.getChar().equals("Rogue")) {
-			
-			int new_level = player.getLevel() + 1;
-			player.setLevel(new_level);
-			
-			float new_strength = player.getBase_Strength() + 1;
-			float new_Dexterity = player.getBase_Dexterity() + 4;
-			float new_Intelligence = player.getBase_Intelligence() + 1;
-			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
-			updateStatsWithArmor(); 
-		}
-		//---for ranger
-		if (choice[0].equals("level up") && player.getChar().equals("Ranger")) {
-			
-			int new_level = player.getLevel() + 1;
-			player.setLevel(new_level);
-			
-			float new_strength = player.getBase_Strength() + 1;
-			float new_Dexterity = player.getBase_Dexterity() + 5;
-			float new_Intelligence = player.getBase_Intelligence() + 1;
-			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
-			updateStatsWithArmor(); 
-		}
-		
-		//---for mage
-		if (choice[0].equals("level up") && player.getChar().equals("Mage")) {
-			
-			int new_level = player.getLevel() + 1;
-			player.setLevel(new_level);
-			
-			float new_strength = player.getBase_Strength() + 1;
-			float new_Dexterity = player.getBase_Dexterity() + 1;
-			float new_Intelligence = player.getBase_Intelligence() + 5;
-			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
-			updateStatsWithArmor(); 
+		if (choice[0].equals("level up")){
+			levelUp();
 		}
 		
 		//---Display available weapons
@@ -261,6 +201,80 @@ public class RPGCharacters {
 		}
 	}
 	//---Methods called in go()
+	
+	//---build hero
+	public void buildHero(String name, String hero) {
+	
+			if(hero.equals("Warrior")) {
+				player = new Hero(name, hero, 5, 2, 1);
+				System.out.println("Welcome "+name+" the "+hero);
+			}	
+			else if(hero.equals("Rogue")) {
+				player = new Hero(name, hero, 2, 6, 1);
+				System.out.println("Welcome "+name+" the "+hero);
+			}
+			else if(hero.equals("Ranger")) {
+				player = new Hero(name, hero, 1, 7, 1);
+				System.out.println("Welcome "+name+" the "+hero);
+			}
+			else if(hero.equals("Mage")) {
+				player = new Hero(name, hero, 1, 1, 8);
+				System.out.println("Welcome "+name+" the "+hero);
+			}
+	}
+	
+	//---level up 
+	//---for warrior
+	public void levelUp() {
+			if (player.getChar().equals("Warrior")) {
+				
+				int new_level = player.getLevel() + 1;
+				player.setLevel(new_level);
+				
+				float new_strength = player.getBase_Strength() + 3;
+				float new_Dexterity = player.getBase_Dexterity() + 2;
+				float new_Intelligence = player.getBase_Intelligence() + 1;
+				player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
+				updateStatsWithArmor(); 
+			}
+			//---for rogue
+			if (player.getChar().equals("Rogue")) {
+				
+				int new_level = player.getLevel() + 1;
+				player.setLevel(new_level);
+				
+				float new_strength = player.getBase_Strength() + 1;
+				float new_Dexterity = player.getBase_Dexterity() + 4;
+				float new_Intelligence = player.getBase_Intelligence() + 1;
+				player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
+				updateStatsWithArmor(); 
+			}
+			//---for ranger
+			if (player.getChar().equals("Ranger")) {
+				
+				int new_level = player.getLevel() + 1;
+				player.setLevel(new_level);
+				
+				float new_strength = player.getBase_Strength() + 1;
+				float new_Dexterity = player.getBase_Dexterity() + 5;
+				float new_Intelligence = player.getBase_Intelligence() + 1;
+				player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
+				updateStatsWithArmor(); 
+			}
+			
+			//---for mage
+			if (player.getChar().equals("Mage")) {
+				
+				int new_level = player.getLevel() + 1;
+				player.setLevel(new_level);
+				
+				float new_strength = player.getBase_Strength() + 1;
+				float new_Dexterity = player.getBase_Dexterity() + 1;
+				float new_Intelligence = player.getBase_Intelligence() + 5;
+				player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
+				updateStatsWithArmor(); 
+			}
+	}
 	
 	//---equip armor if player class is valid and player level is valid
 	public boolean equipArmor(String choice, String slot) throws InvalidArmorException {

@@ -18,7 +18,6 @@ public class ItemTest {
 		RPGCharacters app = new RPGCharacters();
 		app.player = new Hero("Michel", "Warrior", 5, 2, 1);
 		app.MakeWeapons();
-		ArrayList<Weapon> weaponslist = app.weaponslist;
 		String choice = "Bronze axe";
 		String expected = "You dont have sufficient level to equip weapon!";
 		//---act
@@ -35,7 +34,6 @@ public class ItemTest {
 		RPGCharacters app = new RPGCharacters();
 		app.player = new Hero("Michel", "Warrior", 5, 2, 1);
 		app.MakeArmor();
-		ArrayList<Armor> armorlist = app.armorlist;
 		String choice = "Steel plate";
 		String slot = "Body";
 		String expected = "You dont have sufficient level to equip armor!";
@@ -53,7 +51,6 @@ public class ItemTest {
 		RPGCharacters app = new RPGCharacters();
 		app.player = new Hero("Michel", "Warrior", 5, 2, 1);
 		app.MakeWeapons();
-		ArrayList<Weapon> weaponslist = app.weaponslist;
 		String choice = "Wooden bow";
 		String expected = "This weapon is not available to your class!";
 		//---act
@@ -70,7 +67,6 @@ public class ItemTest {
 		RPGCharacters app = new RPGCharacters();
 		app.player = new Hero("Michel", "Warrior", 5, 2, 1);
 		app.MakeArmor();
-		ArrayList<Armor> armorlist = app.armorlist;
 		String choice = "Cloth";
 		String slot = "Body";
 		String expected = "This armor is not available to your class!";
@@ -88,7 +84,6 @@ public class ItemTest {
 		RPGCharacters app = new RPGCharacters();
 		app.player = new Hero("Michel", "Warrior", 5, 2, 1);
 		app.MakeWeapons();
-		ArrayList<Weapon> weaponslist = app.weaponslist;
 		String choice = "Wooden sword";
 		Boolean expected = true;
 		//---act
@@ -104,7 +99,6 @@ public class ItemTest {
 		RPGCharacters app = new RPGCharacters();
 		app.player = new Hero("Michel", "Warrior", 5, 2, 1);
 		app.MakeArmor();
-		ArrayList<Armor> armorlist = app.armorlist;
 		String choice = "Bronze plate";
 		String slot = "Body";
 		boolean expected = true;
@@ -112,6 +106,30 @@ public class ItemTest {
 		boolean actual = app.equipArmor(choice, slot);
 		//---assert
 		assertEquals(expected,actual);
+	}
+	
+	//---Attributes gained by armor
+	@Test
+	public void gainAttByArmor_equipArmor_TotalAttributesIncrease() throws InvalidArmorException{
+		//---arrange
+		RPGCharacters app = new RPGCharacters();
+		app.player = new Hero("Michel", "Warrior", 5, 2, 1);
+		app.MakeArmor();
+		String choice = "Bronze plate"; //---adds str. 3, dex. 1, int. 1
+		String slot = "Body";
+		app.equipArmor(choice, slot);
+		double expected_str = 8;
+		double expected_dex = 3;
+		double expected_int = 2;
+		//---act
+		app.updateStatsWithArmor();
+		double actual_str = app.player.getTotal_Strength();
+		double actual_dex = app.player.getTotal_Dexterity();
+		double actual_int = app.player.getTotal_Intelligence();
+		//---assert
+		assertEquals(expected_str,actual_str);
+		assertEquals(expected_dex,actual_dex);
+		assertEquals(expected_int,actual_int);
 	}
 		
 	//---Calculate DPS when no weapon is equipped
@@ -136,31 +154,32 @@ public class ItemTest {
 		app.MakeWeapons();
 		app.player = new Hero("Michel", "Warrior", 5, 2, 1);
 		String choice = "Wooden sword";
+		app.equipWeapon(choice);
 		int expected = (int) ((2.5*1.5)*(1 + (5 / 100)));
 		//---act
-		app.equipWeapon(choice);
 		app.updateStatsWithWeapon();
 		int actual = (int) app.player.getDPS();
 		//---assert
 		assertEquals(expected,actual);
 	}
+	
 		
 	//---Calculate DSP with valid weapon and armor equipped
 	@Test
-	public void damagePerSecond_withWeaponAndArmo_damagePerSecondWithWeaponAndArmorReturned() throws InvalidWeaponException, InvalidArmorException {
+	public void damagePerSecond_withWeaponAndArmor_damagePerSecondWithWeaponAndArmorReturned() throws InvalidWeaponException, InvalidArmorException {
 		//---arrange
 		RPGCharacters app = new RPGCharacters();
 		app.MakeWeapons();
 		app.MakeArmor();
 		app.player = new Hero("Michel", "Warrior", 5, 2, 1);
 		String choiceWeapon = "Wooden sword"; //---damage:2.5, attacks_per_second:1.5
-		String choiceArmor = "Bronze plate"; //---3 strength added 
-		int expected = (int) ((2.5*1.5)*(1.0+((5.0+3.0)/100.0)));
-		//---act
+		String choiceArmor = "Bronze plate"; //---3 strength added
 		app.equipArmor(choiceArmor, "Body");
 		app.updateStatsWithArmor();
 		app.equipWeapon(choiceWeapon);
 		app.updateStatsWithWeapon();
+		int expected = (int) ((2.5*1.5)*(1.0+((5.0+3.0)/100.0)));
+		//---act
 		int actual = (int) app.player.getDPS();
 		//---assert
 		assertEquals(expected,actual);

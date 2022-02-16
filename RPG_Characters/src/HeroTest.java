@@ -9,24 +9,29 @@ public class HeroTest {
 	@Test
 	public void newHero_initialLvl_lvlOne() {
 		//---arrange
-		Hero player = new Hero("Michel", "Warrior", 5, 2, 1);
+		RPGCharacters app = new RPGCharacters();
+		String name = "Michel";
+		String hero = "Warrior";
 		int expected = 1;
 		//---act
-		int actual = player.getLevel();
+		app.buildHero(name, hero);
+		int actual = app.player.getLevel();
 		//---assert
 		assertEquals(expected,actual);
 	}
 	
-	//---when a character gains level it should be lvl 2
+	//---when a character gains level, it should be lvl 2
 	@Test
 	public void levelUp_nextLvl_lvlTwo() {
 		//---arrange
-		Hero player = new Hero("Michel", "Warrior", 5, 2, 1);
+		RPGCharacters app = new RPGCharacters();
+		String name = "Michel";
+		String hero = "Warrior";
+		app.buildHero(name, hero);
 		int expected = 2;
 		//---act
-		int new_level = player.getLevel() + 1;
-		player.setLevel(new_level);
-		int actual = player.getLevel(); 
+		app.levelUp();
+		int actual = app.player.getLevel(); 
 		//---assert
 		assertEquals(expected,actual);
 	}
@@ -36,14 +41,17 @@ public class HeroTest {
 	@Test
 	public void newWarrior_startAtt_warriorAtt() {
 		//---arrange
-		Hero player = new Hero("Michel", "Warrior", 5, 2, 1);
+		RPGCharacters app = new RPGCharacters();
+		String name = "Michel";
+		String hero = "Warrior";
 		double expected_str = 5;
 		double expected_dex = 2;
 		double expected_int = 1;
 		//---act
-		double actual_str = player.getBase_Strength();
-		double actual_dex = player.getBase_Dexterity();
-		double actual_int = player.getBase_Intelligence();
+		app.buildHero(name, hero);
+		double actual_str = app.player.getBase_Strength();
+		double actual_dex = app.player.getBase_Dexterity();
+		double actual_int = app.player.getBase_Intelligence();
 		//---assert
 		assertEquals(expected_str,actual_str);
 		assertEquals(expected_dex,actual_dex);
@@ -54,14 +62,17 @@ public class HeroTest {
 	@Test
 	public void newRogue_startAtt_rogueAtt() {
 		//---arrange
-		Hero player = new Hero("Michel", "Rogue", 2, 6, 1);
+		RPGCharacters app = new RPGCharacters();
+		String name = "Michel";
+		String hero = "Rogue";
 		double expected_str = 2;
 		double expected_dex = 6;
 		double expected_int = 1;
 		//---act
-		double actual_str = player.getBase_Strength();
-		double actual_dex = player.getBase_Dexterity();
-		double actual_int = player.getBase_Intelligence();
+		app.buildHero(name, hero);
+		double actual_str = app.player.getBase_Strength();
+		double actual_dex = app.player.getBase_Dexterity();
+		double actual_int = app.player.getBase_Intelligence();
 		//---assert
 		assertEquals(expected_str,actual_str);
 		assertEquals(expected_dex,actual_dex);
@@ -72,14 +83,17 @@ public class HeroTest {
 	@Test
 	public void newRanger_startAtt_rangerAtt() {
 		//---arrange
-		Hero player = new Hero("Michel", "Ranger", 1, 7, 1);
+		RPGCharacters app = new RPGCharacters();
+		String name = "Michel";
+		String hero = "Ranger";
 		double expected_str = 1;
 		double expected_dex = 7;
 		double expected_int = 1;
 		//---act
-		double actual_str = player.getBase_Strength();
-		double actual_dex = player.getBase_Dexterity();
-		double actual_int = player.getBase_Intelligence();
+		app.buildHero(name, hero);
+		double actual_str = app.player.getBase_Strength();
+		double actual_dex = app.player.getBase_Dexterity();
+		double actual_int = app.player.getBase_Intelligence();
 		//---assert
 		assertEquals(expected_str,actual_str);
 		assertEquals(expected_dex,actual_dex);
@@ -90,14 +104,17 @@ public class HeroTest {
 	@Test
 	public void newMage_startAtt_mageAtt() {
 		//---arrange
-		Hero player = new Hero("Michel", "Mage", 1, 1, 8);
+		RPGCharacters app = new RPGCharacters();
+		String name = "Michel";
+		String hero = "Mage";
 		double expected_str = 1;
 		double expected_dex = 1;
 		double expected_int = 8;
 		//---act
-		double actual_str = player.getBase_Strength();
-		double actual_dex = player.getBase_Dexterity();
-		double actual_int = player.getBase_Intelligence();
+		app.buildHero(name, hero);
+		double actual_str = app.player.getBase_Strength();
+		double actual_dex = app.player.getBase_Dexterity();
+		double actual_int = app.player.getBase_Intelligence();
 		//---assert
 		assertEquals(expected_str,actual_str);
 		assertEquals(expected_dex,actual_dex);
@@ -109,18 +126,18 @@ public class HeroTest {
 		@Test
 		public void lvlUpWarrior_LvlUpAtt_warriorLvlTwoAtt() {
 			//---arrange
-			Hero player = new Hero("Michel", "Warrior", 5, 2, 1);
+			RPGCharacters app = new RPGCharacters();
+			String name = "Michel";
+			String hero = "Warrior";
+			app.buildHero(name, hero);
 			double expected_str = 8;
 			double expected_dex = 4;
 			double expected_int = 2;
-			float new_strength = player.getBase_Strength() + 3;
-			float new_Dexterity = player.getBase_Dexterity() + 2;
-			float new_Intelligence = player.getBase_Intelligence() + 1;
-			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
 			//---act
-			double actual_str = player.getBase_Strength();
-			double actual_dex = player.getBase_Dexterity();
-			double actual_int = player.getBase_Intelligence();
+			app.levelUp();
+			double actual_str = app.player.getBase_Strength();
+			double actual_dex = app.player.getBase_Dexterity();
+			double actual_int = app.player.getBase_Intelligence();
 			//---assert
 			assertEquals(expected_str,actual_str);
 			assertEquals(expected_dex,actual_dex);
@@ -131,18 +148,18 @@ public class HeroTest {
 		@Test
 		public void lvlUpRogue_LvlUpAtt_rogueLvlTwoAtt() {
 			//---arrange
-			Hero player = new Hero("Michel", "Rogue", 2, 6, 1);
+			RPGCharacters app = new RPGCharacters();
+			String name = "Michel";
+			String hero = "Rogue";
+			app.buildHero(name, hero);
 			double expected_str = 3;
 			double expected_dex = 10;
 			double expected_int = 2;
-			float new_strength = player.getBase_Strength() + 1;
-			float new_Dexterity = player.getBase_Dexterity() + 4;
-			float new_Intelligence = player.getBase_Intelligence() + 1;
-			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
 			//---act
-			double actual_str = player.getBase_Strength();
-			double actual_dex = player.getBase_Dexterity();
-			double actual_int = player.getBase_Intelligence();
+			app.levelUp();
+			double actual_str = app.player.getBase_Strength();
+			double actual_dex = app.player.getBase_Dexterity();
+			double actual_int = app.player.getBase_Intelligence();
 			//---assert
 			assertEquals(expected_str,actual_str);
 			assertEquals(expected_dex,actual_dex);
@@ -153,18 +170,18 @@ public class HeroTest {
 		@Test
 		public void lvlUpRanger_LvlUpAtt_rangerLvlTwoAtt() {
 			//---arrange
-			Hero player = new Hero("Michel", "Ranger", 1, 7, 1);
+			RPGCharacters app = new RPGCharacters();
+			String name = "Michel";
+			String hero = "Ranger";
+			app.buildHero(name, hero);
 			double expected_str = 2;
 			double expected_dex = 12;
 			double expected_int = 2;
-			float new_strength = player.getBase_Strength() + 1;
-			float new_Dexterity = player.getBase_Dexterity() + 5;
-			float new_Intelligence = player.getBase_Intelligence() + 1;
-			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
 			//---act
-			double actual_str = player.getBase_Strength();
-			double actual_dex = player.getBase_Dexterity();
-			double actual_int = player.getBase_Intelligence();
+			app.levelUp();
+			double actual_str = app.player.getBase_Strength();
+			double actual_dex = app.player.getBase_Dexterity();
+			double actual_int = app.player.getBase_Intelligence();
 			//---assert
 			assertEquals(expected_str,actual_str);
 			assertEquals(expected_dex,actual_dex);
@@ -175,18 +192,18 @@ public class HeroTest {
 		@Test
 		public void lvlUpMage_LvlUpAtt_mageLvlTwoAtt(){
 			//---arrange
-			Hero player = new Hero("Michel", "Mage", 1, 1, 8);
+			RPGCharacters app = new RPGCharacters();
+			String name = "Michel";
+			String hero = "Mage";
+			app.buildHero(name, hero);
 			double expected_str = 2;
 			double expected_dex = 2;
 			double expected_int = 13;
-			float new_strength = player.getBase_Strength() + 1;
-			float new_Dexterity = player.getBase_Dexterity() + 1;
-			float new_Intelligence = player.getBase_Intelligence() + 5;
-			player.setBaseAtt(new_strength, new_Dexterity, new_Intelligence);
 			//---act
-			double actual_str = player.getBase_Strength();
-			double actual_dex = player.getBase_Dexterity();
-			double actual_int = player.getBase_Intelligence();
+			app.levelUp();
+			double actual_str = app.player.getBase_Strength();
+			double actual_dex = app.player.getBase_Dexterity();
+			double actual_int = app.player.getBase_Intelligence();
 			//---assert
 			assertEquals(expected_str,actual_str);
 			assertEquals(expected_dex,actual_dex);
